@@ -35,6 +35,30 @@
                 "help": "Last address of ROM protected by the MPU",
                 "value": "0x0fffffff",
                 "macro_name": "MPU_ROM_END"
+            },
+            "flash-start-address": {
+                "help": "Start address of programmable internal flash.",
+                "value": null
+            },
+            "flash-size": {
+                "help": "Total size of programmable internal flash.",
+                "value": null
+            },
+            "cfg-sector-1-address": {
+                "help": "Flash sector address for config sector 1. Typically the end of flash minus the size of 1 sectors.",
+                "value": null
+            },
+            "cfg-sector-1-size": {
+                "help": "Flash sector size for config sector 1. Typically 4*1024 bytes.",
+                "value": null
+            },
+            "cfg-sector-2-address": {
+                "help": "Flash sector address for config sector 2. Typically the end of flash minus the size of 2 sector (this and sector 1).",
+                "value": null
+            },
+            "cfg-sector-2-size": {
+                "help": "Flash sector size for config sector 2. Typically 4*1024 bytes.",
+                "value": null
             }
         }
     },
@@ -1487,6 +1511,12 @@
         "device_name": "MK64FN1M0xxx12",
         "bootloader_supported": true,
         "overrides": {
+            "flash-start-address" : "0x0",
+            "flash-size"          : "(1024*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(4*1024))",
+            "cfg-sector-1-size"   : "(4*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(4*1024))",
+            "cfg-sector-2-size"   : "(4*1024)",
             "network-default-interface-type": "ETHERNET"
         }
     },
@@ -1732,6 +1762,12 @@
         "device_name": "MK66FN2M0xxx18",
         "bootloader_supported": true,
         "overrides": {
+            "flash-start-address" : "0x0",
+            "flash-size"          : "(2048*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(4*1024))",
+            "cfg-sector-1-size"   : "(4*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(4*1024))",
+            "cfg-sector-2-size"   : "(4*1024)",
             "network-default-interface-type": "ETHERNET"
         }
     },
@@ -2435,6 +2471,12 @@
             }
         },
         "overrides": {
+            "flash-start-address" : "0x08000000",
+            "flash-size"          : "(1024*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + 48*1024)",
+            "cfg-sector-1-size"   : "(16*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + 64*1024)",
+            "cfg-sector-2-size"   : "(16*1024)",
             "network-default-interface-type": "WIFI"
         }
     },
@@ -2471,6 +2513,12 @@
             }
         },
         "overrides": {
+            "flash-start-address" : "0x08000000",
+            "flash-size"          : "(1024*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + 48*1024)",
+            "cfg-sector-1-size"   : "(16*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + 64*1024)",
+            "cfg-sector-2-size"   : "(16*1024)",
             "network-default-interface-type": "WIFI"
         }
     },
@@ -2514,7 +2562,15 @@
                 "value": 1
             }
         },
-        "overrides": { "lpticker_delay_ticks": 3 },
+        "overrides": {
+            "flash-start-address" : "0x08000000",
+            "flash-size"          : "(1536*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(128*1024))",
+            "cfg-sector-1-size"   : "(128*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(128*1024))",
+            "cfg-sector-2-size"   : "(128*1024)",
+            "lpticker_delay_ticks": 3
+        },
         "detect_code": ["0743"],
         "macros_add": ["USB_STM_HAL", "USBHOST_OTHER"],
         "device_has_add": [
@@ -2626,6 +2682,12 @@
         "device_name": "STM32F429ZI",
         "bootloader_supported": true,
         "overrides": {
+            "flash-start-address" : "0x08000000",
+            "flash-size"          : "(2048*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(128*1024))",
+            "cfg-sector-1-size"   : "(128*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(128*1024))",
+            "cfg-sector-2-size"   : "(128*1024)",
             "network-default-interface-type": "ETHERNET"
         }
     },
@@ -2791,6 +2853,12 @@
         "device_name": "STM32F746ZG",
         "bootloader_supported": true,
         "overrides": {
+            "flash-start-address" : "0x08000000",
+            "flash-size"          : "(1024*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(256*1024))",
+            "cfg-sector-1-size"   : "(256*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(256*1024))",
+            "cfg-sector-2-size"   : "(256*1024)",
             "lpticker_delay_ticks": 3,
             "network-default-interface-type": "ETHERNET"
         }
@@ -2892,6 +2960,12 @@
         "device_name": "STM32F767ZI",
         "bootloader_supported": true,
         "overrides": {
+            "flash-start-address" : "0x08000000",
+            "flash-size"          : "(2048*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(256*1024))",
+            "cfg-sector-1-size"   : "(256*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(256*1024))",
+            "cfg-sector-2-size"   : "(256*1024)",
             "lpticker_delay_ticks": 3,
             "network-default-interface-type": "ETHERNET"
         }
@@ -3491,7 +3565,15 @@
                 "macro_name": "CLOCK_SOURCE_USB"
             }
         },
-        "overrides": { "lse_available": 0 },
+        "overrides": {
+            "flash-start-address" : "0x08000000",
+            "flash-size"          : "(2048*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(128*1024))",
+            "cfg-sector-1-size"   : "(128*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(128*1024))",
+            "cfg-sector-2-size"   : "(128*1024)",
+            "lse_available": 0
+        },
         "macros_add": ["USB_STM_HAL", "USBHOST_OTHER"],
         "device_has_add": [
             "ANALOGOUT",
@@ -3662,6 +3744,12 @@
         "device_name": "STM32F746NG",
         "bootloader_supported": true,
         "overrides": {
+            "flash-start-address" : "0x08000000",
+            "flash-size"          : "(1024*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(256*1024))",
+            "cfg-sector-1-size"   : "(256*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(256*1024))",
+            "cfg-sector-2-size"   : "(256*1024)",
             "lpticker_delay_ticks": 3,
             "network-default-interface-type": "ETHERNET"
         }
@@ -3729,7 +3817,15 @@
                 "value": 1
             }
         },
-        "overrides": { "lpticker_delay_ticks": 3 },
+        "overrides": {
+            "flash-start-address" : "0x08000000",
+            "flash-size"          : "(1024*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(2*1024))",
+            "cfg-sector-1-size"   : "(2*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(2*1024))",
+            "cfg-sector-2-size"   : "(2*1024)",
+            "lpticker_delay_ticks": 3
+        },
         "supported_form_factors": ["ARDUINO"],
         "detect_code": ["0764"],
         "macros_add": ["USBHOST_OTHER", "TWO_RAM_REGIONS"],
@@ -4034,6 +4130,12 @@
             }
         },
         "overrides": {
+            "flash-start-address" : "0x08000000",
+            "flash-size"          : "(2048*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(128*1024))",
+            "cfg-sector-1-size"   : "(128*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(128*1024))",
+            "cfg-sector-2-size"   : "(128*1024)",
             "network-default-interface-type": "WIFI"
         }
     },
@@ -4118,6 +4220,12 @@
         "device_name": "STM32F437VG",
         "bootloader_supported": true,
         "overrides": {
+            "flash-start-address" : "0x08000000",
+            "flash-size"          : "(1024*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(128*1024))",
+            "cfg-sector-1-size"   : "(128*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(128*1024))",
+            "cfg-sector-2-size"   : "(128*1024)",
             "lse_available": 0,
             "network-default-interface-type": "ETHERNET"
         }
@@ -6795,6 +6903,12 @@
         "device_name": "NUC472HI8AE",
         "bootloader_supported": true,
         "overrides": {
+            "flash-start-address" : "0x0",
+            "flash-size"          : "(512*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(4*1024))",
+            "cfg-sector-1-size"   : "(4*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(4*1024))",
+            "cfg-sector-2-size"   : "(4*1024)",
             "network-default-interface-type": "ETHERNET"
         }
     },
@@ -7296,6 +7410,12 @@
         "release_versions": ["5"],
         "bootloader_supported": true,
         "overrides": {
+            "flash-start-address" : "0x0",
+            "flash-size"          : "(512*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(4*1024))",
+            "cfg-sector-1-size"   : "(4*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(4*1024))",
+            "cfg-sector-2-size"   : "(4*1024)",
             "network-default-interface-type": "ETHERNET"
         }
     },
