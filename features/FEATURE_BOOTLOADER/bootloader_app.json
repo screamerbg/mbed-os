@@ -1,0 +1,75 @@
+{
+    "macros": [
+        "MBEDTLS_USER_CONFIG_FILE=\"bootloader_mbedtls_user_config.h\"",
+        "SHOW_PROGRESS_BAR=0",
+        "MAX_COPY_RETRIES=1",
+        "MAX_BOOT_RETRIES=3",
+        "ARM_BOOTLOADER_USE_NVSTORE_ROT=1",
+        "ARM_UC_USE_PAL_CRYPTO=0",
+        "ARM_UC_USE_PAL_BLOCKDEVICE=1",
+        "ARM_UC_PAAL_TRACE_ENABLE=0",
+        "ARM_UC_PROFILE_MBED_CLOUD_CLIENT=1",
+        "ARM_UC_FEATURE_CRYPTO_PAL=0",
+        "ARM_UC_FEATURE_CRYPTO_MBEDTLS=1",
+        "MBED_CLOUD_CLIENT_UPDATE_STORAGE=ARM_UCP_FLASHIAP_BLOCKDEVICE",
+        "DEFAULT_MAX_APPLICATION_SIZE=MBED_CONF_BOOTLOADER_MAX_APPLICATION_SIZE",
+        "DISABLE_ERROR_DESCRIPTION=1",
+        "Mutex=PlatformMutex"
+    ],
+    "config": {
+        "application-start-address": {
+            "help": "Address to the beginning of the active application firmware in flash",
+            "value": null
+        },
+        "application-jump-address": {
+            "help": "Jump address for running the active application firmware",
+            "value": null
+        },
+        "max-application-size": {
+            "help": "Maximum size of the active application",
+            "value": null
+        },
+        "flash-start-address": {
+            "help": "Start address of internal flash. Only used in this config to help the definition of other macros.",
+            "value": null
+        },
+        "flash-size": {
+            "help": "Total size of internal flash. Only used in this config to help the definition of other macros.",
+            "value": null
+        }
+    },
+    "target_overrides": {
+        "*": {
+            "target.features_remove"           : ["LWIP"],
+            "target.features_add"              : ["COMMON_PAL"],
+            "platform.stdio-baud-rate"         : 115200,
+            "platform.stdio-flush-at-exit"     : false,
+            "nvstore.area_1_address"           : "MBED_CONF_BOOTLOADER_CFG_SECTOR_1_ADDRESS",
+            "nvstore.area_1_size"              : "MBED_CONF_BOOTLOADER_CFG_SECTOR_1_SIZE",
+            "nvstore.area_2_address"           : "MBED_CONF_BOOTLOADER_CFG_SECTOR_2_ADDRESS",
+            "nvstore.area_2_size"              : "MBED_CONF_BOOTLOADER_CFG_SECTOR_2_SIZE",
+            "update-client.storage-address"    : "MBED_CONF_BOOTLOADER_STORAGE_ADDRESS",
+            "update-client.storage-size"       : "MBED_CONF_BOOTLOADER_STORAGE_SIZE",
+            "update-client.storage-locations"  : "MBED_CONF_BOOTLOADER_STORAGE_LOCATIONS",
+            "update-client.application-details": "MBED_CONF_BOOTLOADER_APPLICATION_HEADER_ADDRESS",
+            "application-start-address"        : "MBED_CONF_BOOTLOADER_APPLICATION_START_ADDRESS",
+            "max-application-size"             : "MBED_CONF_BOOTLOADER_MAX_APPLICATION_SIZE",
+            "update-client.firmware-header-version": "2",
+            "target.bootloader_img"            : null,
+            "target.header_offset"             : null,
+            "target.app_offset"                : null
+        },
+        "NUMAKER_PFM_NUC472": {
+            "drivers.uart-serial-rxbuf-size"   : 1024,
+            "drivers.uart-serial-txbuf-size"   : 1024
+        },
+        "NUMAKER_PFM_M487": {
+            "drivers.uart-serial-rxbuf-size"   : 1024,
+            "drivers.uart-serial-txbuf-size"   : 1024
+        },
+        "NUMAKER_IOT_M487": {
+            "drivers.uart-serial-rxbuf-size"   : 1024,
+            "drivers.uart-serial-txbuf-size"   : 1024
+        }
+    }
+}
