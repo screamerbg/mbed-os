@@ -32,7 +32,7 @@
 #endif
 
 #ifdef MBED_CLOUD_CLIENT_SUPPORT_UPDATE
-#include "update-helper/update-helper.h"
+#include "update-helper.h"
 #endif
 
 #ifdef MBED_HEAP_STATS_ENABLED

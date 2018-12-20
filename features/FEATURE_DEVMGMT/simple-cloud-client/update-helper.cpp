@@ -16,7 +16,7 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------
 
-#include "update-helper/update-helper.h"
+#include "update-helper.h"
 
 #ifdef MBED_CLOUD_CLIENT_SUPPORT_UPDATE
 

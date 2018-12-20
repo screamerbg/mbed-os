@@ -25,7 +25,7 @@
 #include "mbed-client/m2minterface.h"
 #include "mbed-client/m2mvector.h"
 #include "mbed-cloud-client-resource.h"
-#include "storage-helper/storage-helper.h"
+#include "storage-helper.h"
 #include "mbed.h"
 #include "NetworkInterface.h"
 
