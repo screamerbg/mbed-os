@@ -4,15 +4,17 @@ import sys
 import subprocess
 import logging
 import argparse
-from os.path import dirname, abspath, join
+import re
+from os.path import dirname, abspath, join, isdir, isfile
+from shutil import copyfile
 
 # Be sure that the tools directory is in the search path
 ROOT = abspath(join(dirname(__file__), "../.."))
 sys.path.insert(0, ROOT)
 
-from tools.utils import run_cmd, delete_dir_files, mkdir, copy_file
+from tools.utils import run_cmd, delete_dir_files, mkdir
 
-def del_file(name):
+def find_and_del_file(name):
     """ Delete the file in RTOS/CMSIS/features directory of mbed-os
     Args:
     name - name of the file
@@ -25,9 +27,31 @@ def del_file(name):
                 result.append(os.path.join(root, name))
     for file in result:
         os.remove(file)
-        rel_log.debug("Deleted: %s", os.path.relpath(file, ROOT))
+        rel_log.debug("Deleted file: %s", os.path.relpath(file, ROOT))
 
-def copy_folder(src, dest):
+def copy_file(src, dst, regs = None):
+    """ Implement the behaviour of "shutil.copy(src, dst)" without copying the
+    permissions (this was causing errors with directories mounted with samba)
+
+    Positional arguments:
+    src - the source of the copy operation
+    dst - the destination of the copy operation
+    """
+    if isdir(dst):
+        _, base = split(src)
+        dst = join(dst, base)
+    copyfile(src, dst)
+
+    if regs:
+        with open(dst, 'rb+') as f:
+            content = f.read()
+            for reg in regs:
+                content = re.sub(reg['ptr'], reg['rpl'], content)
+            f.seek(0)
+            f.write(content)
+            f.truncate()
+
+def copy_folder(src, dest, regs = None):
     """ Copy contents of folder in mbed-os listed path
     Args:
     src - src folder path
@@ -39,7 +63,7 @@ def copy_folder(src, dest):
         if os.path.isfile(abs_src_file):
             abs_dst_file = os.path.join(dest, file)
             mkdir(os.path.dirname(abs_dst_file))
-            copy_file(abs_src_file, abs_dst_file)
+            copy_file(abs_src_file, abs_dst_file, regs)
 
 def run_cmd_with_output(command, exit_on_failure=False):
     """ Passes a command to the system and returns a True/False result once the
@@ -56,7 +80,7 @@ def run_cmd_with_output(command, exit_on_failure=False):
     result - True/False indicating the success/failure of the command
     output - The output of the command if it was successful, else empty string
     """
-    rel_log.debug('[Exec] %s', ' '.join(command))
+    rel_log.debug('[Exec] %s' % command)
     returncode = 0
     output = ""
     try:
@@ -148,12 +172,17 @@ if __name__ == "__main__":
                         help="Configuration file",
                         default=None,
                         required=True)
+    parser.add_argument('-n', '--no-git',
+                        help="No Git operations - only process folders/files.",
+                        action="store_true",
+                        default=False,
+                        required=False)
     args = parser.parse_args()
     level = getattr(logging, args.log_level.upper())
 
     # Set logging level
     logging.basicConfig(level=level)
-    rel_log = logging.getLogger("Importer")
+    rel_log = logging.getLogger("IMPORTER")
 
     if (args.repo_path is None) or (args.config_file is None):
         rel_log.error("Repository path and config file required as input. Use \"--help\" for more info.")
@@ -182,26 +211,28 @@ if __name__ == "__main__":
     with open(json_file, 'r') as config:
         json_data = json.load(config)
 
+    data_files = json_data["files"]
+    data_folders = json_data["folders"]
+    data_remove = json_data["remove"]
+    data_regs = json_data["regs"] if "regs" in json_data.keys() else None
+
     '''
     Check if branch exists already, in case branch is present
     we will skip all file transfer and merge operations and will
     jump to cherry-pick
     '''
-    if branch_exists(branch):
-        rel_log.info("Branch present = %s", branch)
-    else:
-        data_files = json_data["files"]
-        data_folders = json_data["folders"]
-
+    if args.no_git or not branch_exists(branch):
         ## Remove all files listed in .json from mbed-os repo to avoid duplications
         for file in data_files:
-            src_file = file['src_file']
-            del_file(os.path.basename(src_file))
+            dest_file = file['dest_file']
+            if os.path.isfile(dest_file):
+                os.remove(dest_file)
+                rel_log.debug("Deleted file: %s" % dest_file)
 
         for folder in data_folders:
             dest_folder = folder['dest_folder']
             delete_dir_files(dest_folder)
-            rel_log.debug("Deleted = %s", folder)
+            rel_log.debug("Deleted folder: %s" % dest_folder)
 
         rel_log.info("Removed files/folders listed in json file")
 
@@ -210,26 +241,38 @@ if __name__ == "__main__":
             repo_file = os.path.join(repo, file['src_file'])
             mbed_path = os.path.join(ROOT, file['dest_file'])
             mkdir(os.path.dirname(mbed_path))
-            copy_file(repo_file, mbed_path)
-            rel_log.debug("Copied = %s", mbed_path)
+            copy_file(repo_file, mbed_path, data_regs)
+            rel_log.debug("Copied file: %s -> %s" % (repo_file, mbed_path))
 
         for folder in data_folders:
             repo_folder = os.path.join(repo, folder['src_folder'])
             mbed_path = os.path.join(ROOT, folder['dest_folder'])
-            copy_folder(repo_folder, mbed_path)
-            rel_log.debug("Copied = %s", mbed_path)
+            copy_folder(repo_folder, mbed_path, data_regs)
+            rel_log.debug("Copied folder: %s -> %s" % (repo_folder, mbed_path))
+
+        for remove in data_remove:
+            mbed_path = os.path.join(ROOT, remove['dest'])
+            if isdir(mbed_path):
+                rel_log.debug("Removed folder (config): %s" % mbed_path)
+                os.rmdir(mbed_path)
+            elif isfile(mbed_path):
+                rel_log.debug("Removed file (config): %s" % mbed_path)
+                os.remove(mbed_path)
+
+        if args.no_git:
+            rel_log.debug("Skipped Git operations due to --no-git used.")
+            sys.exit()
 
         ## Create new branch with all changes
-        create_branch = "git checkout -b "+ branch
-        run_cmd_with_output(create_branch, exit_on_failure=True)
-        rel_log.info("Branch created = %s", branch)
+        run_cmd_with_output("git checkout -b %s" % branch, exit_on_failure=True)
+        rel_log.info("Branch created: %s" % branch)
 
-        add_files = "git add -A"
-        run_cmd_with_output(add_files, exit_on_failure=True)
+        run_cmd_with_output("git add -A", exit_on_failure=True)
 
-        commit_branch = "git commit -m \"" + commit_msg + "\""
-        run_cmd_with_output(commit_branch, exit_on_failure=True)
-        rel_log.info("Commit added = %s", mbed_path)
+        run_cmd_with_output("git commit -m \"%s\"" % commit_msg, exit_on_failure=True)
+        rel_log.info("Commit added: %s" % mbed_path)
+    else:
+        rel_log.info("Branch present: %s" % branch)
 
     ## Checkout the feature branch
     branch_checkout(branch)
@@ -240,7 +283,7 @@ if __name__ == "__main__":
         for sha in commit_sha:
             cherry_pick_sha = "git cherry-pick -x " + sha
             run_cmd_with_output(cherry_pick_sha, exit_on_failure=True)
-            rel_log.info("Commit added = %s", cherry_pick_sha)
+            rel_log.info("Commit added: %s" % cherry_pick_sha)
     ## Few commits are already applied, check the next in sequence
     ## and skip to last applied
     else:
