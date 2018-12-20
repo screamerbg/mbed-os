@@ -1,8 +1,5 @@
 {
     "name": "bootloader",
-    "macros": [
-        "DEFAULT_MAX_APPLICATION_SIZE=MBED_CONF_BOOTLOADER_MAX_APPLICATION_SIZE"
-    ],
     "config": {
         "flash-start-address": {
             "help": "Start address of internal flash.",
@@ -43,6 +40,10 @@
         "cfg-sector-2-size": {
             "help": "Flash sector size for config sector 2. Typically 4*1024 bytes. By default the value is inherited from target.",
             "value": "MBED_CONF_TARGET_CFG_SECTOR_2_SIZE"
+        },
+        "cfg-num-sectors": {
+            "help": "Number of SOTP sectors. By default the value is inherited from target.",
+            "value": "MBED_CONF_TARGET_CFG_NUM_SECTORS"
         },
         "storage-address": {
             "help": "The starting address for the firmware storage when using block device (SD, QSPIF, SPIF, FlashIAP). Default 64MB (SD-friendly..).",

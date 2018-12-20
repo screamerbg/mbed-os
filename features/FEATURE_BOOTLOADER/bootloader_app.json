@@ -16,28 +16,6 @@
         "DISABLE_ERROR_DESCRIPTION=1",
         "Mutex=PlatformMutex"
     ],
-    "config": {
-        "application-start-address": {
-            "help": "Address to the beginning of the active application firmware in flash",
-            "value": null
-        },
-        "application-jump-address": {
-            "help": "Jump address for running the active application firmware",
-            "value": null
-        },
-        "max-application-size": {
-            "help": "Maximum size of the active application",
-            "value": null
-        },
-        "flash-start-address": {
-            "help": "Start address of internal flash. Only used in this config to help the definition of other macros.",
-            "value": null
-        },
-        "flash-size": {
-            "help": "Total size of internal flash. Only used in this config to help the definition of other macros.",
-            "value": null
-        }
-    },
     "target_overrides": {
         "*": {
             "target.features_add"              : ["BOOTLOADER", "COMMON_PAL"],
@@ -70,6 +48,20 @@
         "NUMAKER_IOT_M487": {
             "drivers.uart-serial-rxbuf-size"   : 1024,
             "drivers.uart-serial-txbuf-size"   : 1024
+        }
+    },
+    "config": {
+        "application-start-address": {
+            "help": "Address to the beginning of the active application firmware in flash",
+            "value": null
+        },
+        "application-jump-address": {
+            "help": "Jump address for running the active application firmware",
+            "value": null
+        },
+        "max-application-size": {
+            "help": "Maximum size of the active application",
+            "value": null
         }
     }
 }

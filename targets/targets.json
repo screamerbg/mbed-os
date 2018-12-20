@@ -59,6 +59,10 @@
             "cfg-sector-2-size": {
                 "help": "Flash sector size for config sector 2. Typically 4*1024 bytes.",
                 "value": null
+            },
+            "cfg-num-sectors": {
+                "help": "Number of config sectors",
+                "value": 2
             }
         }
     },

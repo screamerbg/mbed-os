@@ -1,0 +1,79 @@
+{
+    "name": "mbed-cloud-client",
+    "macros" : [
+        "MBEDTLS_PEM_WRITE_C",
+        "MBEDTLS_CMAC_C",
+        "MBEDTLS_CIPHER_MODE_CTR",
+        "SA_PV_PLAT_K64F_MBEDOS_GNUC",
+        "PB_FIELD_32BIT",
+        "PB_ENABLE_MALLOC",
+        "PB_BUFFER_ONLY",
+        "PV_PROFILE_STD",
+        "ARM_UC_PROFILE_MBED_CLOUD_CLIENT=1",
+        "ARM_UC_USE_PAL_BLOCKDEVICE=1",
+        "MBED_CLOUD_CLIENT_UPDATE_STORAGE=ARM_UCP_FLASHIAP_BLOCKDEVICE",
+        "MBED_CLIENT_USER_CONFIG_FILE=\"mbed_cloud_client_user_config.h\"",
+        "MBED_CLOUD_CLIENT_USER_CONFIG_FILE=\"mbed_cloud_client_user_config.h\"",
+        "PAL_USER_DEFINED_CONFIGURATION=\"sotp_fs_config_MbedOS.h\"",
+        "PAL_FS_MOUNT_POINT_PRIMARY=\"/fs\"",
+        "MBEDTLS_USER_CONFIG_FILE=\"mbedTLSConfig_mbedOS.h\"",
+        "PAL_DTLS_PEER_MIN_TIMEOUT=5000"
+    ],
+    "config": {
+        "update-download-protocol": {
+            "help": "Set up download protocol for update firmware",
+            "required": true,
+            "options": ["MBED_CLOUD_CLIENT_UPDATE_DOWNLOAD_PROTOCOL_COAP", "MBED_CLOUD_CLIENT_UPDATE_DOWNLOAD_PROTOCOL_HTTP"],
+            "default": "MBED_CLOUD_CLIENT_UPDATE_DOWNLOAD_PROTOCOL_COAP",
+            "value": "MBED_CLOUD_CLIENT_UPDATE_DOWNLOAD_PROTOCOL_COAP"
+        },
+        "disable-certificate-enrollment": {
+            "help": "Enables or disables certificate enrollment feature",
+            "options": ["null", "1"],
+            "default": null,
+            "value": null
+        },
+        "cfg-sector-1-address": {
+            "help": "Flash sector address for SOTP sector 1. By default the value is inherited from bootloader config.",
+            "macro_name": "PAL_INTERNAL_FLASH_SECTION_1_ADDRESS",
+            "value": "MBED_CONF_BOOTLOADER_CFG_SECTOR_1_ADDRESS"
+        },
+        "cfg-sector-1-size": {
+            "help": "Flash sector size for SOTP sector 1. By default the value is inherited from bootloader config.",
+            "macro_name": "PAL_INTERNAL_FLASH_SECTION_1_SIZE",
+            "value": "MBED_CONF_BOOTLOADER_CFG_SECTOR_1_SIZE"
+        },
+        "cfg-sector-2-address": {
+            "help": "Flash sector address for SOTP sector 2. By default the value is inherited from bootloader config.",
+            "macro_name": "PAL_INTERNAL_FLASH_SECTION_2_ADDRESS",
+            "value": "MBED_CONF_BOOTLOADER_CFG_SECTOR_2_ADDRESS"
+        },
+        "cfg-sector-2-size": {
+            "help": "Flash sector size for SOTP sector 2. By default the value is inherited from bootloader config.",
+            "macro_name": "PAL_INTERNAL_FLASH_SECTION_2_SIZE",
+            "value": "MBED_CONF_BOOTLOADER_CFG_SECTOR_2_SIZE"
+        },
+        "cfg-num-sectors": {
+            "help": "Number of SOTP sectors. By default the value is inherited from bootloader config.",
+            "macro_name": "PAL_INT_FLASH_NUM_SECTIONS",
+            "value": "MBED_CONF_BOOTLOADER_CFG_NUM_SECTORS"
+        },
+        "storage-address": {
+            "help": "The starting address for the firmware storage when using block device (SD, QSPIF, SPIF, FlashIAP). Default 64MB (SD-friendly..).",
+            "value": "MBED_CONF_BOOTLOADER_STORAGE_ADDRESS"
+        },
+        "storage-size": {
+            "help": "Total storage allocated for firmware image(s). Default 2MB.",
+            "value": "MBED_CONF_BOOTLOADER_STORAGE_SIZE"
+        },
+        "storage-locations": {
+            "help": "Number of equally sized locations the storage space should be split into.",
+            "value": "MBED_CONF_BOOTLOADER_STORAGE_LOCATIONS"
+        }
+    },
+    "target_overrides": {
+        "*": {
+            "target.features_add": ["COMMON_PAL"]
+        }
+    }
+}
