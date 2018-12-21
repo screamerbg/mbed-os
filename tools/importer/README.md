@@ -16,6 +16,7 @@ Note: Only files present in folder will be copied, directories inside the folder
 `commit_sha` is list of commits present in mbed-os repo. These commits will be applied after copying files and folders listed above.Each commit in the commit_sha list is cherry-picked and applied with the -x option, which records the SHA of the source commit in the commit message.
 Note: You must resolve any conflicts that arise during this cherry-pick process. Make sure that the "(cherry picked from commit ...)" statement is present in the commit message. Re-execute the python script to apply rest of the SHA commits.
 
+```
 {
   "files" : [
     {
@@ -44,12 +45,19 @@ Note: You must resolve any conflicts that arise during this cherry-pick process.
       "d9d622afe0ca8c7ab9d24c17f9fe59b54dcc61c9",
     ]
 }
+```
 
 ### Input to importer.py
 1. Repository: -r <repo_path> ( Example: CMSIS / Mbed-tls)
 2. `repo`_importer.json: -c <json_file>  (Example: cmsis_importer.json)
 
-For example the command below can be used to update CMSIS:
-`python tools\importer\importer.py -c tools\importer\cmsis_importer.json -r <path to cmsis repo>`
+
+#### For CMSIS:
+You can run this command to update CMSIS: `python tools\importer\importer.py -c tools\importer\cmsis_importer.json -r <path to cmsis repo>`
 
 Note: This script must be run from the mbed-os directory to work correctly.
+
+#### For Pelion DM client:
+1. Import the Pelion DM codebase using `mbed import https://github.com/ARMmbed/mbed-cloud-client`. The codebase should be imported outside the mbed-os codebase.
+2. Change your working dir to the mbed-os codebase, e.g. `cd mbed-os`
+3. `python tools\importer\importer.py -c tools\importer\pelion_client.json -r <path to imported mbed-cloud-client repo>`
