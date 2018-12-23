@@ -25,26 +25,6 @@
             "help": "Maximum size of the active application.",
             "value": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - MBED_CONF_BOOTLOADER_APPLICATION_START_ADDRESS)"
         },
-        "cfg-sector-1-address": {
-            "help": "Flash sector address for config sector 1. Typically the end of flash minus the size of 1 sectors. By default the value is inherited from target.",
-            "value": "MBED_CONF_TARGET_CFG_SECTOR_1_ADDRESS"
-        },
-        "cfg-sector-1-size": {
-            "help": "Flash sector size for config sector 1. Typically 4*1024 bytes. By default the value is inherited from target.",
-            "value": "MBED_CONF_TARGET_CFG_SECTOR_1_SIZE"
-        },
-        "cfg-sector-2-address": {
-            "help": "Flash sector address for config sector 2. Typically the end of flash minus the size of 2 sector (this and sector 1). By default the value is inherited from target.",
-            "value": "MBED_CONF_TARGET_CFG_SECTOR_2_ADDRESS"
-        },
-        "cfg-sector-2-size": {
-            "help": "Flash sector size for config sector 2. Typically 4*1024 bytes. By default the value is inherited from target.",
-            "value": "MBED_CONF_TARGET_CFG_SECTOR_2_SIZE"
-        },
-        "cfg-num-sectors": {
-            "help": "Number of SOTP sectors. By default the value is inherited from target.",
-            "value": "MBED_CONF_TARGET_CFG_NUM_SECTORS"
-        },
         "storage-address": {
             "help": "The starting address for the firmware storage when using block device (SD, QSPIF, SPIF, FlashIAP). Default 64MB (SD-friendly..).",
             "value": "(64*1024*1024)"
