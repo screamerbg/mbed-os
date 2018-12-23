@@ -2213,6 +2213,12 @@
         "device_name": "STM32F207ZG",
         "bootloader_supported": true,
         "overrides": {
+            "flash-start-address" : "0x08000000",
+            "flash-size"          : "(1024*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(128*1024))",
+            "cfg-sector-1-size"   : "(128*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(128*1024))",
+            "cfg-sector-2-size"   : "(128*1024)",
             "network-default-interface-type": "ETHERNET"
         }
     },
@@ -5104,6 +5110,12 @@
         "device_name": "R7S72103",
         "bootloader_supported": true,
         "overrides": {
+            "flash-start-address" : "0x18000000",
+            "flash-size"          : "(8*1024*1024)",
+            "cfg-sector-1-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 2*(4*1024))",
+            "cfg-sector-1-size"   : "(4*1024)",
+            "cfg-sector-2-address": "(MBED_CONF_TARGET_FLASH_START_ADDRESS + MBED_CONF_TARGET_FLASH_SIZE - 1*(4*1024))",
+            "cfg-sector-2-size"   : "(4*1024)",
             "network-default-interface-type": null
         }
     },
