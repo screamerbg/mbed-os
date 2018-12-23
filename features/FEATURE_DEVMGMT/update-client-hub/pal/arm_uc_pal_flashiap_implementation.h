@@ -21,7 +21,7 @@
 
 #include "update-client-hub/common/arm_uc_error.h"
 #include "update-client-hub/common/arm_uc_types.h"
-#include "update-client-hub/common/arm_uc_paal_update_api.h"
+#include "update-client-hub/pal/arm_uc_paal_update_api.h"
 
 #ifdef __cplusplus
 extern "C" {

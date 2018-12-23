@@ -19,7 +19,7 @@
 #include "arm_uc_config.h"
 #if defined(ARM_UC_FEATURE_PAL_FILESYSTEM) && (ARM_UC_FEATURE_PAL_FILESYSTEM == 1)
 
-#include "update-client-hub/common/arm_uc_paal_update_api.h"
+#include "update-client-hub/pal/arm_uc_paal_update_api.h"
 
 #include "update-client-hub/pal/arm_uc_pal_extensions.h"
 #include "update-client-hub/common/arm_uc_utilities.h"

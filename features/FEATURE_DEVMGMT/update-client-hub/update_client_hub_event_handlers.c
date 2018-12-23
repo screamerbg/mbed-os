@@ -22,10 +22,10 @@
 #include "update_client_hub_state_machine.h"
 
 #include "update-client-hub/common/arm_uc_common.h"
-#include "update-client-hub/common/arm_uc_firmware_manager.h"
-#include "update-client-hub/common/update-client-manifest-manager.h"
-#include "update-client-hub/common/arm_uc_source_manager.h"
-#include "update-client-hub/common/arm_uc_control_center.h"
+#include "update-client-hub/src/arm_uc_firmware_manager.h"
+#include "update-client-hub/src/update-client-manifest-manager.h"
+#include "update-client-hub/src/arm_uc_source_manager.h"
+#include "update-client-hub/src/arm_uc_control_center.h"
 
 /**
  * @brief event handler registered with the firmware manager

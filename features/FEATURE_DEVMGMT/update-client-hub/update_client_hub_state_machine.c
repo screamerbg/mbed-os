@@ -22,11 +22,11 @@
 
 #include "update-client-hub/common/arm_uc_common.h"
 #include "update-client-hub/common/arm_uc_hw_plat.h"
-#include "update-client-hub/common/arm_uc_firmware_manager.h"
-#include "update-client-hub/common/update-client-manifest-manager.h"
-#include "update-client-hub/common/arm_uc_source_manager.h"
-#include "update-client-hub/common/arm_uc_control_center.h"
-#include "update-client-hub/common/arm_uc_pre_shared_key.h"
+#include "update-client-hub/src/arm_uc_firmware_manager.h"
+#include "update-client-hub/src/update-client-manifest-manager.h"
+#include "update-client-hub/src/arm_uc_source_manager.h"
+#include "update-client-hub/src/arm_uc_control_center.h"
+#include "update-client-hub/src/arm_uc_pre_shared_key.h"
 
 #include "mbedtls/aes.h"
 

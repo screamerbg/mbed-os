@@ -19,7 +19,7 @@
 #include "arm_uc_config.h"
 #if defined(ARM_UC_FEATURE_PAL_FLASHIAP) && (ARM_UC_FEATURE_PAL_FLASHIAP == 1)
 
-#include "update-client-hub/common/arm_uc_paal_update_api.h"
+#include "update-client-hub/pal/arm_uc_paal_update_api.h"
 
 #include "update-client-hub/pal/arm_uc_pal_flashiap_implementation.h"
 

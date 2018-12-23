@@ -36,7 +36,7 @@
 #ifdef MBED_CLOUD_CLIENT_SUPPORT_UPDATE
 #include "update-client-hub/update_client_hub.h"
 
-#include "update-client-hub/common/arm_uc_source_http.h"
+#include "update-client-hub/src/arm_uc_source_http.h"
 #include "update-client-lwm2m/lwm2m-source.h"
 #include "update-client-lwm2m/lwm2m-monitor.h"
 #include "update-client-lwm2m/lwm2m-control.h"

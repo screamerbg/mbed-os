@@ -20,7 +20,7 @@
 #if defined(ARM_UC_FEATURE_PAL_RTL8195AM) && (ARM_UC_FEATURE_PAL_RTL8195AM == 1)
 #if defined(TARGET_REALTEK_RTL8195AM)
 
-#include "update-client-hub/common/arm_uc_paal_update_api.h"
+#include "update-client-hub/pal/arm_uc_paal_update_api.h"
 #include "update-client-hub/pal/arm_uc_pal_flashiap_platform.h"
 
 #include "update-client-hub/common/arm_uc_metadata_header_v2.h"

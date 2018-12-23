@@ -24,7 +24,7 @@
 #include "update-client-lwm2m/DeviceMetadataResource.h"
 #include "update-client-lwm2m/FirmwareUpdateResource.h"
 #include "update-client-hub/common/arm_uc_common.h"
-#include "update-client-hub/common/pal_device_identity.h"
+#include "update-client-hub/src/pal_device_identity.h"
 #include <inttypes.h>
 
 

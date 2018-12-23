@@ -19,7 +19,7 @@
 #ifndef ARM_UC_PAL_FLASHIAP_BLOCKDEVICE_H
 #define ARM_UC_PAL_FLASHIAP_BLOCKDEVICE_H
 
-#include "update-client-hub/common/arm_uc_paal_update_api.h"
+#include "update-client-hub/pal/arm_uc_paal_update_api.h"
 
 extern ARM_UC_PAAL_UPDATE ARM_UCP_FLASHIAP_BLOCKDEVICE;
 

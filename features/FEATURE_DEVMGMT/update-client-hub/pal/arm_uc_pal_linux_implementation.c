@@ -23,7 +23,7 @@
 
 #include "update-client-hub/pal/arm_uc_pal_linux_implementation_internal.h"
 #include "update-client-hub/pal/arm_uc_pal_linux_implementation.h"
-#include "update-client-hub/common/arm_uc_paal_update_api.h"
+#include "update-client-hub/pal/arm_uc_paal_update_api.h"
 #include "update-client-hub/pal/arm_uc_pal_linux_ext.h"
 
 #include "update-client-hub/common/arm_uc_trace.h"

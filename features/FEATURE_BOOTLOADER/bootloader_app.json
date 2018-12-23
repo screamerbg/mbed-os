@@ -18,7 +18,7 @@
     ],
     "target_overrides": {
         "*": {
-            "target.features_add"              : ["BOOTLOADER", "COMMON_PAL"],
+            "target.features_add"              : ["DEVMGMT", "BOOTLOADER", "COMMON_PAL"],
             "target.features_remove"           : ["LWIP"],
             "target.components_remove"         : ["FLASHIAP"],
             "platform.stdio-baud-rate"         : 115200,

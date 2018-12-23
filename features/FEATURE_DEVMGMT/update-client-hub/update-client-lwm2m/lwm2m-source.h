@@ -19,7 +19,7 @@
 #ifndef __ARM_UCS_LWM2M_SOURCE_H__
 #define __ARM_UCS_LWM2M_SOURCE_H__
 
-#include "update-client-hub/common/arm_uc_source.h"
+#include "update-client-hub/src/arm_uc_source.h"
 
 extern ARM_UPDATE_SOURCE ARM_UCS_LWM2M_SOURCE;
 

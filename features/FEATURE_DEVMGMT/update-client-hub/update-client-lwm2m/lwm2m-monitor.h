@@ -19,7 +19,7 @@
 #ifndef __ARM_UCS_LWM2M_MONITOR_H__
 #define __ARM_UCS_LWM2M_MONITOR_H__
 
-#include "update-client-hub/common/arm_uc_monitor.h"
+#include "update-client-hub/src/arm_uc_monitor.h"
 
 extern ARM_UPDATE_MONITOR ARM_UCS_LWM2M_MONITOR;
 

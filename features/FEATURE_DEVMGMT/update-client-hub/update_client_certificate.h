@@ -22,6 +22,6 @@
 #warning This file is deprecated. \
 Use update - client - control - center / arm_uc_certificate.h instead
 
-#include "update-client-hub/common/arm_uc_certificate.h"
+#include "update-client-hub/src/arm_uc_certificate.h"
 
 #endif // ARM_UC_HUB_CERTIFICATE_H

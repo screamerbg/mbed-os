@@ -19,7 +19,7 @@
 #ifndef ARM_UC_PAL_LINUX_EXT_H
 #define ARM_UC_PAL_LINUX_EXT_H
 
-#include "update-client-hub/common/arm_uc_paal_update_api.h"
+#include "update-client-hub/pal/arm_uc_paal_update_api.h"
 
 /**
  * @brief Write a manifest to a file.

@@ -20,10 +20,10 @@
 #define ARM_UPDATE_CLIENT_HUB_H
 
 #include "update-client-hub/common/arm_uc_common.h"
-#include "update-client-hub/common/arm_uc_source.h"
-#include "update-client-hub/common/arm_uc_monitor.h"
-#include "update-client-hub/common/arm_uc_control_center.h"
-#include "update-client-hub/common/arm_uc_paal_update.h"
+#include "update-client-hub/src/arm_uc_source.h"
+#include "update-client-hub/src/arm_uc_monitor.h"
+#include "update-client-hub/src/arm_uc_control_center.h"
+#include "update-client-hub/pal/arm_uc_paal_update.h"
 
 #ifdef __cplusplus
 extern "C" {

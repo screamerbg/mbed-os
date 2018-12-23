@@ -20,7 +20,7 @@
 #if defined(ARM_UC_FEATURE_PAL_LINUX) && (ARM_UC_FEATURE_PAL_LINUX == 1)
 #if defined(TARGET_IS_PC_LINUX)
 
-#include "update-client-hub/common/arm_uc_paal_update_api.h"
+#include "update-client-hub/pal/arm_uc_paal_update_api.h"
 #include "update-client-hub/pal/arm_uc_pal_linux_implementation.h"
 #include "update-client-hub/pal/arm_uc_pal_linux_implementation_internal.h"
 

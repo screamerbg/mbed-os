@@ -27,8 +27,8 @@
  */
 
 #include "update-client-hub/common/arm_uc_error.h"
-#include "update-client-hub/common/arm_uc_monitor.h"
-#include "update-client-hub/common/arm_uc_source.h"
+#include "update-client-hub/src/arm_uc_monitor.h"
+#include "update-client-hub/src/arm_uc_source.h"
 #include <stdint.h>
 
 #ifdef __cplusplus

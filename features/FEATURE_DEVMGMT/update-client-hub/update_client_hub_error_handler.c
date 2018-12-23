@@ -18,7 +18,7 @@
 
 #include "update_client_hub_error_handler.h"
 
-#include "update-client-hub/common/arm_uc_control_center.h"
+#include "update-client-hub/src/arm_uc_control_center.h"
 #include "update-client-hub/common/arm_uc_common.h"
 
 static void (*arm_uc_error_callback_handler)(int32_t error) = NULL;

@@ -19,7 +19,7 @@
 #ifndef ARM_UC_PAL_BLOCKDEVICE_IMPLEMENTATION_H
 #define ARM_UC_PAL_BLOCKDEVICE_IMPLEMENTATION_H
 
-#include "update-client-hub/common/arm_uc_paal_update_api.h"
+#include "update-client-hub/pal/arm_uc_paal_update_api.h"
 
 #ifdef __cplusplus
 extern "C" {

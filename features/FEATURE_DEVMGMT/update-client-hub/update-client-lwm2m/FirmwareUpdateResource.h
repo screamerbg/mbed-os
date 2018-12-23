@@ -24,7 +24,7 @@
 #include "mbed-client/m2mresource.h"
 #include "mbed-client/m2mobject.h"
 #include "update-client-hub/common/arm_uc_config.h"
-#include "update-client-hub/common/arm_uc_monitor.h"
+#include "update-client-hub/src/arm_uc_monitor.h"
 
 namespace FirmwareUpdateResource {
 
